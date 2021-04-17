@@ -103,21 +103,11 @@ namespace Dungeon_Master_Assist_Tool
     public class StateSelectorManager : INotifyPropertyChanged
     {
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public DNDState CurrentState => States[CurrentIndex];
         public DNDState[] States { get; set; }
 
         public int CurrentIndex;
-
-
-
-        public void UpdateIndex(object sender, SelectionChangedEventArgs e)
-        {
-            CurrentIndex = ((ListBox)sender).SelectedIndex;
-            PropertyChanged(this, new PropertyChangedEventArgs("CurrentState"));
-        }
-        
 
         public StateSelectorManager(DNDState[] states)
         {
@@ -128,6 +118,15 @@ namespace Dungeon_Master_Assist_Tool
         {
             get { return States[index]; }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void UpdateIndex(object sender, SelectionChangedEventArgs e)
+        {
+            CurrentIndex = ((ListBox)sender).SelectedIndex;
+            PropertyChanged(this, new PropertyChangedEventArgs("CurrentState"));
+        }
+
+        
 
     }
 

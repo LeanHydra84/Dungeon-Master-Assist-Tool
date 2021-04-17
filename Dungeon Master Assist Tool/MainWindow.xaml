@@ -14,7 +14,7 @@
 
     <Window.Resources>
 
-        <Style TargetType="{x:Type TabItem}" x:Key="ThrowawayKey">
+        <Style TargetType="{x:Type TabItem}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
@@ -37,7 +37,6 @@
                                 <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,1"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="False">
-                                <Setter Property="IsEnabled" Value="False"/>
                                 <Setter TargetName="Border" Property="Background" Value="LightGray"/>
                                 <Setter TargetName="Border" Property="BorderBrush" Value="Black"/>
                             </Trigger>
@@ -62,9 +61,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Background="#323639" MouseDown="dragEventHandler">
-
-            </Grid>
+            <Grid Grid.Row="0" Background="#323639" MouseDown="dragEventHandler"/>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -72,7 +69,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Background="#D6D1D5" Width="80" HorizontalAlignment="Left">
+                <StackPanel Background="#D6D1D5" Width="90" HorizontalAlignment="Left">
                     
                 </StackPanel>
             </Grid>
