@@ -26,15 +26,9 @@ namespace Dungeon_Master_Assist_Tool
         public MainWindow()
         {
             InitializeComponent();
-
             manager = (DataManager)DataContext;
-            manager.DeserializeMonsters();
-            
 
-            //MonsterListBox.ItemsSource = manager.MonsterData.States;
-            //MonsterListBox.Items.Refresh();
-
-            
+            MonsterListBox.SelectionChanged += manager.MonsterData.UpdateIndex;
 
         }
 

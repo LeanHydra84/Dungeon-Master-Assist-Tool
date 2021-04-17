@@ -103,7 +103,10 @@
                                 <TextBox Width="400" Height="20"/>
 
                             </StackPanel>
-                            <ListBox Height="500" Width="400" x:Name="MonsterListBox" ItemsSource="{Binding MonsterData.States}">
+                            <ListBox Height="500" Width="400" 
+                                     x:Name="MonsterListBox" 
+                                     ItemsSource="{Binding MonsterData.States}"
+                                     SelectionMode="Single">
 
                             </ListBox>
 
@@ -133,32 +136,44 @@
 
                                         <StackPanel Grid.Column="0">
                                             <TextBlock Text="STR" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.Strength}" TextAlignment="Center"/>
                                             <TextBlock Text="STR_MOD" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.StrengthMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel  Grid.Column="1">
                                             <TextBlock Text="DEX" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.Dexterity}" TextAlignment="Center"/>
                                             <TextBlock Text="DEX_MOD" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.DexterityMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel  Grid.Column="2">
                                             <TextBlock Text="CON" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.Constitution}" TextAlignment="Center"/>
                                             <TextBlock Text="CON_MOD" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.ConstitutionMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="3">
                                             <TextBlock Text="INT" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.Intelligence}" TextAlignment="Center"/>
                                             <TextBlock Text="INT_MOD" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.IntelligenceMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="4">
                                             <TextBlock Text="WIS" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.Wisdom}" TextAlignment="Center"/>
                                             <TextBlock Text="WIS_MOD" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.WisdomMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="5">
                                             <TextBlock Text="CHA" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.Charisma}" TextAlignment="Center"/>
                                             <TextBlock Text="CHA_MOD" TextAlignment="Center"/>
+                                            <TextBlock Text="{Binding MonsterData.CurrentState.CharismaMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                     </Grid>
