@@ -40,5 +40,11 @@ namespace Dungeon_Master_Assist_Tool
             }
         }
 
+        public void CloseButtonClicked(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+
     }
 }
