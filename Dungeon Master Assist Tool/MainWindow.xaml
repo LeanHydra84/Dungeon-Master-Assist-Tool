@@ -70,7 +70,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Background="#D6D1D5" Width="90" HorizontalAlignment="Left">
-                    
+
                 </StackPanel>
             </Grid>
 
@@ -115,12 +115,27 @@
                                     BorderBrush="White" CornerRadius="8">
 
                                 <StackPanel>
-                                    <TextBlock Text="Monster Name"/>
                                     <TextBlock Text="{Binding MonsterData.CurrentState.Name}"/>
-                                    <TextBlock Text="Metadata"/>
-                                    <TextBlock Text="Armor Class"/>
-                                    <TextBlock Text="Hit Points"/>
-                                    <TextBlock Text="Speed"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.Metadata}"/>
+                                    <Grid>
+                                        <TextBlock Text="Armor Class:"/>
+                                        <TextBlock Text="{Binding MonsterData.CurrentState.ArmorClass}" Width="240"/>
+
+                                    </Grid>
+                                    <Grid>
+
+                                        <TextBlock Text="Hit Points:"/>
+                                        <TextBlock Text="{Binding MonsterData.CurrentState.HitPoints}" Width="270"/>
+
+                                    </Grid>
+
+                                    <Grid>
+
+                                        <TextBlock Text="Speed:"/>
+                                        <TextBlock Text="{Binding MonsterData.CurrentState.Speed}" Width="310"/>
+
+                                    </Grid>
+
                                     <Grid>
 
                                         <Grid.ColumnDefinitions>
@@ -133,42 +148,42 @@
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Strength" TextAlignment="Center"/>
+                                            <TextBlock Text="STR" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.Strength}" TextAlignment="Center"/>
                                             <TextBlock Text="Mod" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.StrengthMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel  Grid.Column="1">
-                                            <TextBlock Text="Dexterity" TextAlignment="Center"/>
+                                            <TextBlock Text="DEX" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.Dexterity}" TextAlignment="Center"/>
                                             <TextBlock Text="Mod" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.DexterityMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel  Grid.Column="2">
-                                            <TextBlock Text="Constitution" TextAlignment="Center"/>
+                                            <TextBlock Text="CON" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.Constitution}" TextAlignment="Center"/>
                                             <TextBlock Text="Mod" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.ConstitutionMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="3">
-                                            <TextBlock Text="Intelligence" TextAlignment="Center"/>
+                                            <TextBlock Text="INT" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.Intelligence}" TextAlignment="Center"/>
                                             <TextBlock Text="Mod" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.IntelligenceMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="4">
-                                            <TextBlock Text="Wisdom" TextAlignment="Center"/>
+                                            <TextBlock Text="WIS" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.Wisdom}" TextAlignment="Center"/>
                                             <TextBlock Text="Mod" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.WisdomMod}" TextAlignment="Center"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="5">
-                                            <TextBlock Text="Charisma" TextAlignment="Center"/>
+                                            <TextBlock Text="CHA" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.Charisma}" TextAlignment="Center"/>
                                             <TextBlock Text="Mod" TextAlignment="Center"/>
                                             <TextBlock Text="{Binding MonsterData.CurrentState.CharismaMod}" TextAlignment="Center"/>
@@ -176,14 +191,23 @@
 
                                     </Grid>
 
-                                    <TextBlock Text="Saving Throws"/>
                                     <TextBlock Text="Skills"/>
-                                    <TextBlock Text="Senses"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.Skills}" TextAlignment="Center"/>
                                     <TextBlock Text="Languages"/>
-                                    <TextBlock Text="Challenge"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.Languages}" TextAlignment="Center"/>
+                                    <TextBlock Text="Senses"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.Senses}" TextAlignment="Center"/>
+
+                                    <Grid>
+                                    <TextBlock Text="Challenge:"/>
+                                        <TextBlock Text="{Binding MonsterData.CurrentState.Challenge}" Width="260"/>
+                                    </Grid>
                                     <TextBlock Text="Traits"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.Traits}"/>
                                     <TextBlock Text="Actions"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.Actions}"/>
                                     <TextBlock Text="Legendary Actions"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.LegendaryActions}"/>
 
 
 
