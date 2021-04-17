@@ -9,10 +9,11 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Controls;
 using System.ComponentModel;
+using System.Collections;
 
 namespace Dungeon_Master_Assist_Tool
 {
-    
+
     public class DNDState
     {
         [JsonProperty("name")]
@@ -100,6 +101,80 @@ namespace Dungeon_Master_Assist_Tool
 
     }
 
+    // This is an ugly wrapper for a beautiful solution, let it be known
+    // Maybe make this generic so it can be used by other classes
+    public class StateEnumerator<T> : IEnumerable<T>
+    {
+
+        T[] array;
+        string searchQuery;
+
+        public StateEnumerator(T[] array, string search = null)
+        {
+            this.array = array;
+            this.searchQuery = search;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new Enumerator(array, searchQuery);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        private class Enumerator : IEnumerator<T>
+        {
+
+            T[] array;
+
+            int currentIndex;
+
+            string query = null;
+
+            public Enumerator(T[] stateArray)
+            {
+                array = stateArray;
+                currentIndex = -1;
+            }
+
+            public Enumerator(T[] stateArray, string query) : this(stateArray)
+            {
+                this.query = query;
+            }
+
+            public T Current => array[currentIndex];
+
+            object IEnumerator.Current => array[currentIndex];
+
+
+            public bool MoveNext()
+            {
+
+                currentIndex++;
+
+                if (!string.IsNullOrWhiteSpace(query))
+                {
+                    while (currentIndex < array.Length && !Current.ToString().ToLower().Contains(query))
+                    {
+                        currentIndex++;
+                    }
+                }
+
+
+
+                if (currentIndex >= array.Length) return false;
+                return true;
+            }
+
+            public void Reset() { }
+            public void Dispose() { }
+
+        }
+    }
+
     public class StateSelectorManager : INotifyPropertyChanged
     {
 
@@ -126,18 +201,38 @@ namespace Dungeon_Master_Assist_Tool
             PropertyChanged(this, new PropertyChangedEventArgs("CurrentState"));
         }
 
-        
+        public string searchQuery;
+        public void UpdateSearchQuery(object sender, EventArgs e)
+        {
+            searchQuery = ((TextBox)sender).Text;
+            PropertyChanged(this, new PropertyChangedEventArgs("Enumerator"));
+        }
+
+        public StateEnumerator<DNDState> Enumerator
+        {
+            get
+            {
+                return new StateEnumerator<DNDState>(States, searchQuery);
+            }
+        }
 
     }
 
-    public class DataManager
+    public class DataManager : INotifyPropertyChanged
     {
 
-        public StateSelectorManager MonsterData { get; private set; }
-        
+        public StateSelectorManager MonsterData { get; set; }
+
         public DataManager()
         {
             DeserializeMonsters();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyMonster()
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs("MonsterData"));
         }
 
         public void DeserializeMonsters()

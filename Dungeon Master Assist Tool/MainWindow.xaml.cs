@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,12 +30,13 @@ namespace Dungeon_Master_Assist_Tool
             manager = (DataManager)DataContext;
 
             MonsterListBox.SelectionChanged += manager.MonsterData.UpdateIndex;
+            MonsterSearchBar.TextChanged += manager.MonsterData.UpdateSearchQuery;
 
         }
 
         public void dragEventHandler(object sender, MouseEventArgs e)
         {
-            if(e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
             }
@@ -44,7 +46,6 @@ namespace Dungeon_Master_Assist_Tool
         {
             Application.Current.Shutdown();
         }
-
 
     }
 }

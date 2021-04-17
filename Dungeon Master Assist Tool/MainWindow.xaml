@@ -30,8 +30,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
                         <Grid>
-                            <Border Name="Border" Margin="0,5,0,0" Background="Transparent"
-                                    BorderBrush="LightGray" BorderThickness="1,1,1,1">
+                            <Border Name="Border" Margin="0,5,0,0" 
+                                    Background="LightGray" BorderBrush="Black"
+                                    BorderThickness="1,1,1,1">
                                 <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center"
                                                   HorizontalAlignment="Center"
                                                   ContentSource="Header" Margin="12,2,12,2"
@@ -42,14 +43,13 @@
                         </Grid>
 
                         <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#dbdbdb"/>
+                            </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Panel.ZIndex" Value="100"/>
                                 <Setter TargetName="Border" Property="Background" Value="#EEE9ED"/>
-                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,1"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="LightGray"/>
-                                <Setter TargetName="Border" Property="BorderBrush" Value="Black"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#EEE9ED"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
 
@@ -71,7 +71,6 @@
                 <RowDefinition Height="25"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
 
             <Grid Grid.Row="0" Background="#323639" MouseDown="dragEventHandler">
 
@@ -96,16 +95,15 @@
 
             </Grid>
 
-  
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Background="#D6D1D5" Width="90" HorizontalAlignment="Left">
+                <StackPanel Background="#D6D1D5" Width="90" HorizontalAlignment="Left"/>
 
-                </StackPanel>
+
             </Grid>
 
             <TabControl Grid.Row="1" TabStripPlacement="Left" Background="Transparent" BorderThickness="3,0,0,0" BorderBrush="Transparent">
@@ -131,12 +129,12 @@
                             <StackPanel Orientation="Horizontal">
 
                                 <Button Height="20" Width="20"/>
-                                <TextBox Width="400" Height="20"/>
+                                <TextBox x:Name="MonsterSearchBar" Width="400" Height="20"/>
 
                             </StackPanel>
                             <ListBox Height="500" Width="400" 
                                      x:Name="MonsterListBox" 
-                                     ItemsSource="{Binding MonsterData.States}"
+                                     ItemsSource="{Binding MonsterData.Enumerator}"
                                      SelectionMode="Single">
 
                             </ListBox>
@@ -145,6 +143,7 @@
 
 
                         <Grid Grid.Column="1">
+                            
                             <Border Width="400" Height="500" BorderThickness="4"
                                     BorderBrush="White" CornerRadius="8">
 
