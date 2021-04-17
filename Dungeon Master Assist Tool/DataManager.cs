@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection;
+using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace Dungeon_Master_Assist_Tool
 {
@@ -53,7 +55,7 @@ namespace Dungeon_Master_Assist_Tool
         public string IntelligenceMod { get; set; }
 
         [JsonProperty("WIS")]
-        public string Wisdon { get; set; }
+        public string Wisdom { get; set; }
 
         [JsonProperty("WIS_mod")]
         public string WisdomMod { get; set; }
@@ -98,13 +100,24 @@ namespace Dungeon_Master_Assist_Tool
 
     }
 
-    public class StateSelectorManager
+    public class StateSelectorManager : INotifyPropertyChanged
     {
-        public DNDState[] States { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public DNDState CurrentState => States[CurrentIndex];
+        public DNDState[] States { get; set; }
 
         public int CurrentIndex;
 
-        public DNDState CurrentState => States[CurrentIndex];
+
+
+        public void UpdateIndex(object sender, SelectionChangedEventArgs e)
+        {
+            CurrentIndex = ((ListBox)sender).SelectedIndex;
+            PropertyChanged(this, new PropertyChangedEventArgs("CurrentState"));
+        }
+        
 
         public StateSelectorManager(DNDState[] states)
         {
@@ -121,9 +134,12 @@ namespace Dungeon_Master_Assist_Tool
     public class DataManager
     {
 
-        public StateSelectorManager MonsterData;
+        public StateSelectorManager MonsterData { get; private set; }
         
-
+        public DataManager()
+        {
+            DeserializeMonsters();
+        }
 
         public void DeserializeMonsters()
         {
