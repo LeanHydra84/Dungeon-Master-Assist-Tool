@@ -11,7 +11,7 @@
     <Window.DataContext>
         <local:DataManager/>
     </Window.DataContext>
-    
+
     <Window.Resources>
 
         <Style TargetType="{x:Type TabItem}" x:Key="ThrowawayKey">
@@ -42,19 +42,19 @@
                                 <Setter TargetName="Border" Property="BorderBrush" Value="Black"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
-                        
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
+
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontFamily" Value="Fonts/#Dosis"/>
             <Setter Property="FontWeight" Value="Bold"/>
 
         </Style>
-        
+
     </Window.Resources>
-    
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -63,9 +63,20 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Background="#323639" MouseDown="dragEventHandler">
-                
+
             </Grid>
-            
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Background="#D6D1D5" Width="80" HorizontalAlignment="Left">
+                    
+                </StackPanel>
+            </Grid>
+
             <TabControl Grid.Row="1" TabStripPlacement="Left" Background="Transparent" BorderThickness="3,0,0,0" BorderBrush="Transparent">
 
                 <TabItem Header="Encounter">
@@ -102,7 +113,7 @@
                         <Grid Grid.Column="1">
                             <Border Width="400" Height="500" BorderThickness="4"
                                     BorderBrush="White" CornerRadius="8">
-                                
+
                                 <StackPanel>
                                     <TextBlock Text="Monster Name"/>
                                     <TextBlock Text="Metadata"/>
@@ -149,9 +160,9 @@
                                             <TextBlock Text="CHA" TextAlignment="Center"/>
                                             <TextBlock Text="CHA_MOD" TextAlignment="Center"/>
                                         </StackPanel>
-                                        
+
                                     </Grid>
-                                    
+
                                     <TextBlock Text="Saving Throws"/>
                                     <TextBlock Text="Skills"/>
                                     <TextBlock Text="Senses"/>
@@ -198,8 +209,8 @@
 
                         <StackPanel Grid.Column="1">
                             <StackPanel Orientation="Horizontal">
-                                
-                                
+
+
 
                             </StackPanel>
 
