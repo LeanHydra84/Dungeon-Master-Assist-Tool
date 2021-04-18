@@ -83,17 +83,49 @@ namespace Dungeon_Master_Assist_Tool
         [JsonProperty("Challenge")]
         public string Challenge { get; set; }
 
+        private string _traits = "None";
         [JsonProperty("Traits")]
-        public string Traits { get; set; }
-        public string TraitsFormatted => string.IsNullOrWhiteSpace(Traits) ? "None" : Regex.Replace(Traits, "<.*?>", string.Empty).Truncate(DataManager.LengthyTextLimit);
+        public string Traits
+        {
+            get => _traits;
+            set
+            {
+                string temp = Regex.Replace(value, "<.*?>", string.Empty);
+                if (!string.IsNullOrWhiteSpace(temp))
+                    _traits = temp;
+            }
+        }
 
+        private string _actions = "None";
         [JsonProperty("Actions")]
-        public string Actions { get; set; }
-        public string ActionsFormatted => string.IsNullOrWhiteSpace(Traits) ? "None" : Regex.Replace(Actions, "<.*?>", string.Empty).Truncate(DataManager.LengthyTextLimit);
+        public string Actions
+        {
+            get => _actions;
+            set
+            {
+                string temp = Regex.Replace(value, "<.*?>", string.Empty);
+                if (!string.IsNullOrWhiteSpace(temp))
+                    _actions = temp;
+            }
+        }
 
+        private string _legendaryActions = "None";
         [JsonProperty("Legendary Actions")]
-        public string LegendaryActions { get; set; }
-        public string LegendaryActionsFormatted => string.IsNullOrWhiteSpace(Traits) ? "None" : Regex.Replace(LegendaryActions, "<.*?>", string.Empty).Truncate(DataManager.LengthyTextLimit);
+        public string LegendaryActions
+        {
+            get => _legendaryActions;
+            set
+            {
+                string temp = Regex.Replace(value, "<.*?>", string.Empty);
+                if (!string.IsNullOrWhiteSpace(temp))
+                    _legendaryActions = temp;
+            }
+        }
+
+        public string TraitsTruncated => Traits.Truncate(DataManager.LengthyTextLimit);
+        public string ActionsTruncated => Actions.Truncate(DataManager.LengthyTextLimit);
+        public string LegendaryActionsTruncated => LegendaryActions.Truncate(DataManager.LengthyTextLimit);
+
 
         [JsonProperty("img_url")]
         public string ImageURL { get; set; }
@@ -246,6 +278,7 @@ namespace Dungeon_Master_Assist_Tool
     {
         public static string Truncate(this string input, int length)
         {
+            if (input.Length < length) return input;
             return input.Substring(0, length) + "...";
         }
     }

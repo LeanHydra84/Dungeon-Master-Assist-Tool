@@ -149,7 +149,7 @@
 
                         <Grid Grid.Column="1">
                             
-                            <Border Width="400" Height="500" BorderThickness="4"
+                            <Border Width="400" Height="520" BorderThickness="4" Margin="0,15,0,0"
                                     BorderBrush="White" CornerRadius="8">
 
                                 <StackPanel>
@@ -226,36 +226,53 @@
                                     </Grid>
 
                                     <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
-                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Skills:" VerticalAlignment="Bottom"/>
-                                        <TextBlock Text="{Binding MonsterData.CurrentState.Skills}" Width="350" HorizontalAlignment="Right"/>
+                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Skills:"/>
+                                        <TextBlock Text="{Binding MonsterData.CurrentState.Skills}" Width="350" Margin="10,0,10,0"/>
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Margin="10,5,10,0">
-                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Languages:" VerticalAlignment="Bottom">
-                                        </TextBlock>
-                                    <TextBlock Text="{Binding MonsterData.CurrentState.Languages}" Width="315" HorizontalAlignment="Right"/>
+                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Languages:"/>
+                                        <TextBlock Text="{Binding MonsterData.CurrentState.Languages}" Width="315" Margin="10,0,10,0"/>
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Margin="10,5,10,0">
-                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Senses:" VerticalAlignment="Bottom">
-                                        </TextBlock>
-                                    <TextBlock Text="{Binding MonsterData.CurrentState.Senses}" Width="340" HorizontalAlignment="Right"/>
+                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Senses:"/>
+
+                                        <TextBlock Text="{Binding MonsterData.CurrentState.Senses}" Width="340" Margin="10,0,10,0"/>
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal" Margin="10,5,10,0">
-                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Challenge:" VerticalAlignment="Bottom">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding MonsterData.CurrentState.Challenge}" Width="315" HorizontalAlignment="Right"/>
+                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Challenge:"/>
+
+                                        <TextBlock Text="{Binding MonsterData.CurrentState.Challenge}" Width="315" Margin="10,0,10,0"/>
                                     </StackPanel>
 
-                                    <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Traits" Margin="10,5,10,0"/>
-                                    <TextBlock Text="{Binding MonsterData.CurrentState.TraitsFormatted}"
+                                    <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" 
+                                               Text="Traits" Margin="10,5,10,0" HorizontalAlignment="Center"/>
+                                    <TextBlock Width="365" TextWrapping="Wrap">
+
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="MaxHeight" Value="50"/>
+                                                <Setter Property="Text" Value="{Binding MonsterData.CurrentState.TraitsTruncated}"/>
+
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="MaxHeight" Value="Infinity"/>
+                                                        <Setter Property="Text" Value="{Binding MonsterData.CurrentState.Traits}"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    
+                                    <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" 
+                                               Text="Actions" Margin="10,5,10,0" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.Actions}"
                                                Width="365" MaxHeight="50" TextWrapping="Wrap"/>
-                                    <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Actions" Margin="10,5,10,0"/>
-                                    <TextBlock Text="{Binding MonsterData.CurrentState.ActionsFormatted}"
-                                               Width="365" MaxHeight="50" TextWrapping="Wrap"/>
-                                    <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" Text="Legendary Actions" Margin="10,5,10,0"/>
-                                    <TextBlock Text="{Binding MonsterData.CurrentState.LegendaryActionsFormatted}"
+                                    <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" 
+                                               Text="Legendary Actions" Margin="10,5,10,0" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding MonsterData.CurrentState.LegendaryActions}"
                                                Width="365" MaxHeight="50" TextWrapping="Wrap"/>
 
 
