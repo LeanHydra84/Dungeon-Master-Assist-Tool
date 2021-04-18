@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace Dungeon_Master_Assist_Tool
 {
@@ -84,12 +85,15 @@ namespace Dungeon_Master_Assist_Tool
 
         [JsonProperty("Traits")]
         public string Traits { get; set; }
+        public string TraitsFormatted => string.IsNullOrWhiteSpace(Traits) ? "None" : Regex.Replace(Traits, "<.*?>", string.Empty).Truncate(DataManager.LengthyTextLimit);
 
         [JsonProperty("Actions")]
         public string Actions { get; set; }
+        public string ActionsFormatted => string.IsNullOrWhiteSpace(Traits) ? "None" : Regex.Replace(Actions, "<.*?>", string.Empty).Truncate(DataManager.LengthyTextLimit);
 
         [JsonProperty("Legendary Actions")]
         public string LegendaryActions { get; set; }
+        public string LegendaryActionsFormatted => string.IsNullOrWhiteSpace(Traits) ? "None" : Regex.Replace(LegendaryActions, "<.*?>", string.Empty).Truncate(DataManager.LengthyTextLimit);
 
         [JsonProperty("img_url")]
         public string ImageURL { get; set; }
@@ -102,14 +106,13 @@ namespace Dungeon_Master_Assist_Tool
     }
 
     // This is an ugly wrapper for a beautiful solution, let it be known
-    // Maybe make this generic so it can be used by other classes
-    public class StateEnumerator<T> : IEnumerable<T>
+    public class ReloadableEnumerator<T> : IEnumerable<T>
     {
 
         T[] array;
         string searchQuery;
 
-        public StateEnumerator(T[] array, string search = null)
+        public ReloadableEnumerator(T[] array, string search = null)
         {
             this.array = array;
             this.searchQuery = search;
@@ -179,14 +182,13 @@ namespace Dungeon_Master_Assist_Tool
     {
 
 
-        public DNDState CurrentState => States[CurrentIndex];
         public DNDState[] States { get; set; }
-
-        public int CurrentIndex;
+        public DNDState CurrentState { get; private set; }
 
         public StateSelectorManager(DNDState[] states)
         {
             States = states;
+            CurrentState = States[0];
         }
 
         public DNDState this[int index]
@@ -197,42 +199,32 @@ namespace Dungeon_Master_Assist_Tool
         public event PropertyChangedEventHandler PropertyChanged;
         public void UpdateIndex(object sender, SelectionChangedEventArgs e)
         {
-            CurrentIndex = ((ListBox)sender).SelectedIndex;
+            CurrentState = (DNDState)((ListBox)sender).SelectedItem ?? (DNDState)((ListBox)sender).Items.GetItemAt(0);
             PropertyChanged(this, new PropertyChangedEventArgs("CurrentState"));
         }
 
         public string searchQuery;
         public void UpdateSearchQuery(object sender, EventArgs e)
         {
-            searchQuery = ((TextBox)sender).Text;
+            searchQuery = ((TextBox)sender).Text.ToLower();
             PropertyChanged(this, new PropertyChangedEventArgs("Enumerator"));
+            //UpdateIndex(this, null);
         }
 
-        public StateEnumerator<DNDState> Enumerator
-        {
-            get
-            {
-                return new StateEnumerator<DNDState>(States, searchQuery);
-            }
-        }
+        public ReloadableEnumerator<DNDState> Enumerator => new ReloadableEnumerator<DNDState>(States, searchQuery);
 
     }
 
-    public class DataManager : INotifyPropertyChanged
+    public class DataManager
     {
 
-        public StateSelectorManager MonsterData { get; set; }
+        public StateSelectorManager MonsterData { get; private set; }
+
+        public static int LengthyTextLimit = 100;
 
         public DataManager()
         {
             DeserializeMonsters();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyMonster()
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs("MonsterData"));
         }
 
         public void DeserializeMonsters()
@@ -246,6 +238,16 @@ namespace Dungeon_Master_Assist_Tool
 
         }
 
+        
 
     }
+
+    public static partial class ExtensionMethods
+    {
+        public static string Truncate(this string input, int length)
+        {
+            return input.Substring(0, length) + "...";
+        }
+    }
+
 }
