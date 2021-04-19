@@ -54,5 +54,11 @@ namespace Dungeon_Master_Assist_Tool
         {
 
         }
+
+        private void DMGwindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Window1();
+            window.Show();
+        }
     }
 }

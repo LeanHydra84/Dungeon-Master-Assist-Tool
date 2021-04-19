@@ -53,6 +53,17 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="ToggleButton" x:Key="popButton">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="Background" Value="#E8E3E7"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3593E3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -110,6 +121,22 @@
                            Foreground="White" FontFamily="Fonts/#Dosis"
                            VerticalAlignment="Center" FontSize="15" Margin="5,0,0,0"/>
 
+                <Button Grid.Column="17" HorizontalAlignment="Left" Style="{StaticResource redButton}"
+                    Width="15" Height="15" Click="DMGwindow_Click" Foreground="White"
+                    Margin="0,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+
                 <Button Grid.Column="17" HorizontalAlignment="Right" Style="{StaticResource redButton}"
                     Width="15" Height="15" Click="CloseButtonClicked" Foreground="White"
                     Margin="0,0,5,0">
@@ -124,6 +151,7 @@
                     </Button.Template>
 
                 </Button>
+
 
             </Grid>
 
