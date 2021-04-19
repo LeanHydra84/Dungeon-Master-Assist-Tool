@@ -50,5 +50,9 @@ namespace Dungeon_Master_Assist_Tool
             Application.Current.Shutdown();
         }
 
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
