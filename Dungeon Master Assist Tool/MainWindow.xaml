@@ -94,7 +94,7 @@
     </Window.Resources>
 
     <Grid>
-        <Grid>
+        <Grid Background="#D6D1D5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
                 <RowDefinition/>
@@ -133,12 +133,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Background="#D6D1D5" Width="90" HorizontalAlignment="Left"/>
-
-
             </Grid>
 
-            <TabControl Grid.Row="1" TabStripPlacement="Left" Background="Transparent" BorderThickness="3,0,0,0" BorderBrush="Transparent" SelectionChanged="TabControl_SelectionChanged">
+            <TabControl Grid.Row="1" TabStripPlacement="Left" Background="#EEE9ED" BorderThickness="3,0,0,0" BorderBrush="Transparent" SelectionChanged="TabControl_SelectionChanged">
 
                 <TabItem Header="Encounter">
                     <Label Content="Test"/>
