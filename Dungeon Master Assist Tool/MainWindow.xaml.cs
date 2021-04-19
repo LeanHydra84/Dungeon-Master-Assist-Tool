@@ -55,10 +55,33 @@ namespace Dungeon_Master_Assist_Tool
 
         }
 
+        private void Calcwindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window Calculator = new WindowCalc();
+            Calculator.Show();
+        }
+
+        private void BattleMapwindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window BattleMap = new WindowBattle();
+            BattleMap.Show();
+        }
+
         private void DMGwindow_Click(object sender, RoutedEventArgs e)
         {
-            Window window = new Window1();
-            window.Show();
+            Window DMGwindow = new WindowDMG();
+            DMGwindow.Show();
+        }
+
+        private void Travelwindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window Travelwindow = new WindowTravel();
+            Travelwindow.Show();
+        }
+        private void Noteswindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window Noteswindow = new WindowNotes();
+            Noteswindow.Show();
         }
     }
 }
