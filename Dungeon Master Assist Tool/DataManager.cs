@@ -11,11 +11,18 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Collections;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace Dungeon_Master_Assist_Tool
 {
 
-    public class DNDState
+    public interface BindToListBox
+    {
+        string PrimarySource { get; }
+        string SecondarySource { get; }
+    }
+
+    public class MonsterState : BindToListBox
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -90,7 +97,7 @@ namespace Dungeon_Master_Assist_Tool
             get => _traits;
             set
             {
-                string temp = Regex.Replace(value, "<.*?>", string.Empty);
+                string temp = value.CleanHTML();
                 if (!string.IsNullOrWhiteSpace(temp))
                     _traits = temp;
             }
@@ -103,7 +110,7 @@ namespace Dungeon_Master_Assist_Tool
             get => _actions;
             set
             {
-                string temp = Regex.Replace(value, "<.*?>", string.Empty);
+                string temp = value.CleanHTML();
                 if (!string.IsNullOrWhiteSpace(temp))
                     _actions = temp;
             }
@@ -116,7 +123,7 @@ namespace Dungeon_Master_Assist_Tool
             get => _legendaryActions;
             set
             {
-                string temp = Regex.Replace(value, "<.*?>", string.Empty);
+                string temp = value.CleanHTML();
                 if (!string.IsNullOrWhiteSpace(temp))
                     _legendaryActions = temp;
             }
@@ -129,6 +136,70 @@ namespace Dungeon_Master_Assist_Tool
 
         [JsonProperty("img_url")]
         public string ImageURL { get; set; }
+
+        public string PrimarySource => Name;
+        public string SecondarySource => Metadata;
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+    }
+
+    public class SpellState : BindToListBox
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("page")]
+        public string Page { get; set; }
+
+        [JsonProperty("range")]
+        public string Range { get; set; }
+
+        [JsonProperty("components")]
+        public string Components { get; set; }
+
+        [JsonProperty("material")]
+        public string Material { get; set; }
+
+        [JsonProperty("ritual")]
+        public string Ritual { get; set; }
+
+        [JsonProperty("duration")]
+        public string Duration { get; set; }
+
+        [JsonProperty("concentration")]
+        public string Concentration { get; set; }
+
+        [JsonProperty("casting_time")]
+        public string CastingTime { get; set; }
+
+        [JsonProperty("level")]
+        public string Level { get; set; }
+
+        [JsonProperty("school")]
+        public string School { get; set; }
+
+        [JsonProperty("class")]
+        public string Class { get; set; }
+
+        private string _description;
+        [JsonProperty("desc")]
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                string temp = value.CleanHTML();
+                if (!string.IsNullOrWhiteSpace(temp))
+                    _description = temp;
+            }
+        }
+
+        public string PrimarySource => Name;
+        public string SecondarySource => School;
 
         public override string ToString()
         {
@@ -210,20 +281,20 @@ namespace Dungeon_Master_Assist_Tool
         }
     }
 
-    public class StateSelectorManager : INotifyPropertyChanged
+    public class StateSelectorManager<T> : INotifyPropertyChanged where T : class
     {
 
 
-        public DNDState[] States { get; set; }
-        public DNDState CurrentState { get; private set; }
+        public T[] States { get; set; }
+        public T CurrentState { get; private set; }
 
-        public StateSelectorManager(DNDState[] states)
+        public StateSelectorManager(T[] states)
         {
             States = states;
             CurrentState = States[0];
         }
 
-        public DNDState this[int index]
+        public T this[int index]
         {
             get { return States[index]; }
         }
@@ -231,7 +302,7 @@ namespace Dungeon_Master_Assist_Tool
         public event PropertyChangedEventHandler PropertyChanged;
         public void UpdateIndex(object sender, SelectionChangedEventArgs e)
         {
-            CurrentState = (DNDState)((ListBox)sender).SelectedItem ?? (DNDState)((ListBox)sender).Items.GetItemAt(0);
+            CurrentState = (T)((ListBox)sender).SelectedItem ?? (T)((ListBox)sender).Items.GetItemAt(0);
             PropertyChanged(this, new PropertyChangedEventArgs("CurrentState"));
         }
 
@@ -240,37 +311,41 @@ namespace Dungeon_Master_Assist_Tool
         {
             searchQuery = ((TextBox)sender).Text.ToLower();
             PropertyChanged(this, new PropertyChangedEventArgs("Enumerator"));
-            //UpdateIndex(this, null);
         }
 
-        public ReloadableEnumerator<DNDState> Enumerator => new ReloadableEnumerator<DNDState>(States, searchQuery);
+        public ReloadableEnumerator<T> Enumerator => new ReloadableEnumerator<T>(States, searchQuery);
 
     }
 
     public class DataManager
     {
 
-        public StateSelectorManager MonsterData { get; private set; }
+        public StateSelectorManager<MonsterState> MonsterData { get; }
+        public StateSelectorManager<SpellState> SpellsList { get; }
 
         public static int LengthyTextLimit = 100;
 
         public DataManager()
         {
-            DeserializeMonsters();
+            MonsterData = DeserializeJSONAsset<MonsterState>("srd_5e_monsters.json");
+            SpellsList = DeserializeJSONAsset<SpellState>("spells.json");
         }
 
-        public void DeserializeMonsters()
+        public StateSelectorManager<T> DeserializeJSONAsset<T>(string fileName) where T : class
         {
+            string jsonData = null;
 
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\srd_5e_monsters.json");
+            var stream = Application.GetResourceStream(new Uri($@"pack://application:,,,/JsonFiles/{fileName}", UriKind.RelativeOrAbsolute)).Stream;
 
-            string jasonData = File.ReadAllText(path);
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                jsonData = reader.ReadToEnd();
+            }
+            stream.Close();
 
-            MonsterData = new StateSelectorManager(JsonConvert.DeserializeObject<DNDState[]>(jasonData));
+            return new StateSelectorManager<T>(JsonConvert.DeserializeObject<T[]>(jsonData));
 
         }
-
-        
 
     }
 
@@ -281,6 +356,12 @@ namespace Dungeon_Master_Assist_Tool
             if (input.Length < length) return input;
             return input.Substring(0, length) + "...";
         }
+
+        public static string CleanHTML(this string input)
+        {
+            return Regex.Replace(input, "<.*?>", string.Empty);
+        }
+
     }
 
 }

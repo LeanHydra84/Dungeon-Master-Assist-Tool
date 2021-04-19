@@ -14,6 +14,34 @@
 
     <Window.Resources>
 
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Background" Value="Transparent"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Label Content="{Binding PrimarySource}" FontFamily="Fonts/#Dosis" FontWeight="SemiBold"
+                                   HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Label Content="{Binding SecondarySource}" FontSize="12"
+                                   HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="AliceBlue"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Aquamarine"/>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+        
         <Style TargetType="Button" x:Key="redButton">
             <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
             <Setter Property="Background" Value="Red"/>
@@ -300,24 +328,27 @@
                             <StackPanel Orientation="Horizontal">
 
                                 <Button Height="20" Width="20"/>
-                                <TextBox Width="400" Height="20"/>
+                                <TextBox x:Name="SpellSearchBar" Width="400" Height="20"/>
 
                             </StackPanel>
 
-                            <ListBox Height="500" Width="400" x:Name="SpellListBox">
+                            <ListBox Height="500" Width="400" x:Name="SpellListBox" ItemsSource="{Binding SpellsList.Enumerator}"/>
 
-                            </ListBox>
+
 
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1">
-                            <StackPanel Orientation="Horizontal">
+                        <Grid Grid.Column="1">
+                            <Border Width="400" Height="520" BorderThickness="4" Margin="0,15,0,0"
+                                    BorderBrush="White" CornerRadius="8">
 
+                                <StackPanel Orientation="Horizontal" Margin="10, 5, 10, 0">
+                                    <TextBlock Text="Spell: " FontSize="25" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding SpellsList.CurrentState.Name}" FontSize="25" Foreground="Gray"/>
+                                </StackPanel>
 
-
-                            </StackPanel>
-
-                        </StackPanel>
+                            </Border>
+                        </Grid>
 
                     </Grid>
                 </TabItem>

@@ -32,6 +32,9 @@ namespace Dungeon_Master_Assist_Tool
             MonsterListBox.SelectionChanged += manager.MonsterData.UpdateIndex;
             MonsterSearchBar.TextChanged += manager.MonsterData.UpdateSearchQuery;
 
+            SpellListBox.SelectionChanged += manager.SpellsList.UpdateIndex;
+            SpellSearchBar.TextChanged += manager.SpellsList.UpdateSearchQuery;
+
         }
 
         public void dragEventHandler(object sender, MouseEventArgs e)
