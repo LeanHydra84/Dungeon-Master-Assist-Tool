@@ -227,7 +227,7 @@
 
             </Grid>
 
-            <TabControl Grid.Row="1" TabStripPlacement="Left" Background="#EEE9ED" BorderThickness="3,0,0,0" BorderBrush="Transparent" SelectionChanged="TabControl_SelectionChanged">
+            <TabControl Grid.Row="1" TabStripPlacement="Left" Background="#EEE9ED" BorderThickness="3,0,0,0" BorderBrush="Transparent">
 
                 <TabItem Header="Encounter">
                     <Label Content="Test"/>
