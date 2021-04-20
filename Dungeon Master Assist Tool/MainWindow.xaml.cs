@@ -50,5 +50,38 @@ namespace Dungeon_Master_Assist_Tool
             Application.Current.Shutdown();
         }
 
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Calcwindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window Calculator = new WindowCalc();
+            Calculator.Show();
+        }
+
+        private void BattleMapwindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window BattleMap = new WindowBattle();
+            BattleMap.Show();
+        }
+
+        private void DMGwindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window DMGwindow = new WindowDMG();
+            DMGwindow.Show();
+        }
+
+        private void Travelwindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window Travelwindow = new WindowTravel();
+            Travelwindow.Show();
+        }
+        private void Noteswindow_Click(object sender, RoutedEventArgs e)
+        {
+            Window Noteswindow = new WindowNotes();
+            Noteswindow.Show();
+        }
     }
 }

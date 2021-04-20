@@ -1,0 +1,64 @@
+﻿<Window x:Class="Dungeon_Master_Assist_Tool.WindowTravel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dungeon_Master_Assist_Tool"
+        mc:Ignorable="d"
+        Title="Travel Tool" Height="450" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+
+        <Style TargetType="Button" x:Key="redButton">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9e0000"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="147*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="#D6D1D5" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#323639" MouseDown="dragEventHandler">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Calculator"
+                           Foreground="White" FontFamily="Fonts/#Dosis"
+                           VerticalAlignment="Center" FontSize="15" Margin="5,0,0,0"/>
+
+
+                <Button Grid.Column="17" HorizontalAlignment="Right" Style="{StaticResource redButton}"
+                    Width="15" Height="15" Click="CloseButtonClicked" Foreground="White"
+                    Margin="0,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

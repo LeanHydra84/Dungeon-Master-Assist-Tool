@@ -53,6 +53,17 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Button" x:Key="popButton">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="Background" Value="#202124"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4B4C4F"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -94,7 +105,11 @@
     </Window.Resources>
 
     <Grid>
-        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="147*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="#D6D1D5" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
                 <RowDefinition/>
@@ -109,6 +124,82 @@
                 <TextBlock Text="Dungeon Master's Assist Tool"
                            Foreground="White" FontFamily="Fonts/#Dosis"
                            VerticalAlignment="Center" FontSize="15" Margin="5,0,0,0"/>
+
+                <Button HorizontalAlignment="Left" Style="{StaticResource popButton}"
+                    Width="15" Height="15" Click="Calcwindow_Click" Foreground="White"
+                    Margin="175,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <Button HorizontalAlignment="Left" Style="{StaticResource popButton}"
+                    Width="15" Height="15" Click="BattleMapwindow_Click" Foreground="White"
+                    Margin="200,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <Button HorizontalAlignment="Left" Style="{StaticResource popButton}"
+                    Width="15" Height="15" Click="DMGwindow_Click" Foreground="White"
+                    Margin="225,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <Button HorizontalAlignment="Left" Style="{StaticResource popButton}"
+                    Width="15" Height="15" Click="Travelwindow_Click" Foreground="White"
+                    Margin="250,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <Button HorizontalAlignment="Left" Style="{StaticResource popButton}"
+                    Width="15" Height="15" Click="Noteswindow_Click" Foreground="White"
+                    Margin="275,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
 
                 <Button Grid.Column="17" HorizontalAlignment="Right" Style="{StaticResource redButton}"
                     Width="15" Height="15" Click="CloseButtonClicked" Foreground="White"
@@ -125,6 +216,7 @@
 
                 </Button>
 
+
             </Grid>
 
             <Grid Grid.Row="1">
@@ -133,12 +225,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Background="#D6D1D5" Width="90" HorizontalAlignment="Left"/>
-
-
             </Grid>
 
-            <TabControl Grid.Row="1" TabStripPlacement="Left" Background="Transparent" BorderThickness="3,0,0,0" BorderBrush="Transparent">
+            <TabControl Grid.Row="1" TabStripPlacement="Left" Background="#EEE9ED" BorderThickness="3,0,0,0" BorderBrush="Transparent" SelectionChanged="TabControl_SelectionChanged">
 
                 <TabItem Header="Encounter">
                     <Label Content="Test"/>
