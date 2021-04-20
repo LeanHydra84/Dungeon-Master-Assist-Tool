@@ -97,7 +97,7 @@ namespace Dungeon_Master_Assist_Tool
             get => _traits;
             set
             {
-                string temp = value.CleanHTML();
+                string temp = value.HtmlLineSplit().CleanHTML();
                 if (!string.IsNullOrWhiteSpace(temp))
                     _traits = temp;
             }
@@ -110,7 +110,7 @@ namespace Dungeon_Master_Assist_Tool
             get => _actions;
             set
             {
-                string temp = value.CleanHTML();
+                string temp = value.HtmlLineSplit().CleanHTML();
                 if (!string.IsNullOrWhiteSpace(temp))
                     _actions = temp;
             }
@@ -123,7 +123,7 @@ namespace Dungeon_Master_Assist_Tool
             get => _legendaryActions;
             set
             {
-                string temp = value.CleanHTML();
+                string temp = value.HtmlLineSplit().CleanHTML();
                 if (!string.IsNullOrWhiteSpace(temp))
                     _legendaryActions = temp;
             }
@@ -192,7 +192,7 @@ namespace Dungeon_Master_Assist_Tool
             get => _description;
             set
             {
-                string temp = value.CleanHTML();
+                string temp = value.HtmlLineSplit().CleanHTML();
                 if (!string.IsNullOrWhiteSpace(temp))
                     _description = temp;
             }
@@ -351,6 +351,16 @@ namespace Dungeon_Master_Assist_Tool
 
     public static partial class ExtensionMethods
     {
+
+        public static string CleanAndValidate(this string input)
+        {
+            string temp = input.HtmlLineSplit().CleanHTML();
+            if (!string.IsNullOrWhiteSpace(temp))
+                return temp;
+            else return input;
+        }
+
+
         public static string Truncate(this string input, int length)
         {
             if (input.Length < length) return input;
@@ -360,6 +370,11 @@ namespace Dungeon_Master_Assist_Tool
         public static string CleanHTML(this string input)
         {
             return Regex.Replace(input, "<.*?>", string.Empty);
+        }
+
+        public static string HtmlLineSplit(this string input)
+        {
+            return Regex.Replace(input, "</p>", "\n\n");
         }
 
     }
