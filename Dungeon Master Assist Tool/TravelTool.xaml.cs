@@ -23,5 +23,18 @@ namespace Dungeon_Master_Assist_Tool
         {
             InitializeComponent();
         }
+
+        public void dragEventHandler(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        public void CloseButtonClicked(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

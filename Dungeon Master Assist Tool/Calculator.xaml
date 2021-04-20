@@ -5,8 +5,85 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dungeon_Master_Assist_Tool"
         mc:Ignorable="d"
-        Title="Calculator Window" Height="450" Width="800">
+        Title="Calculator Window" Height="601" Width="413" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  WindowStyle="None" PreviewKeyDown="Window_KeyDownPreview">
+
+    <Window.Resources>
+
+        <Style TargetType="Button" x:Key="redButton">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9e0000"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Window.Resources>
+
     <Grid>
+        <Grid Background="#D6D1D5" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#323639" MouseDown="dragEventHandler">
+
+                <TextBlock Text="Calculator"
+                           Foreground="White" FontFamily="Fonts/#Dosis"
+                           VerticalAlignment="Center" FontSize="15" Margin="5,0,0,0"/>
+
+
+                <Button Grid.Column="17" HorizontalAlignment="Right" Style="{StaticResource redButton}"
+                    Width="15" Height="15" Click="CloseButtonClicked" Foreground="White"
+                    Margin="0,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+            </Grid>
+        </Grid>
         
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="165*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="203*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="One" Content="1" HorizontalAlignment="Left" Margin="13,227.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Two" Content="2" HorizontalAlignment="Left" Margin="58,227.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Three" Content="3" HorizontalAlignment="Left" Margin="103,227.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Four" Content="4" HorizontalAlignment="Left" Margin="13,182.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Five" Content="5" HorizontalAlignment="Left" Margin="58,182.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Six" Content="6" HorizontalAlignment="Left" Margin="103,182.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Seven" Content="7" HorizontalAlignment="Left" Margin="13,137.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Eight" Content="8" HorizontalAlignment="Left" Margin="58,137.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Nine" Content="9" HorizontalAlignment="Left" Margin="103,137.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Zero" Content="0" HorizontalAlignment="Left" Margin="13,273.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Plus" Content="+" HorizontalAlignment="Left" Margin="148,227.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Operand" Grid.Row="1" />
+            <Button x:Name="Minus" Content="-" HorizontalAlignment="Left" Margin="148,182.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Operand" Grid.Row="1"/>
+            <Button x:Name="Multiply" Content="×" HorizontalAlignment="Left" Margin="148,137.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18"  Click="Button_Operand" Grid.Row="1"/>
+            <Button x:Name="Equals" Content="=" HorizontalAlignment="Left" Margin="103,273.717,0,0" VerticalAlignment="Top" Width="85" Height="40" FontSize="18" Click="Button_Equals" Grid.Row="1"/>
+            <Button x:Name="Dot" Content="." HorizontalAlignment="Left" Margin="58,273.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Button_Click" Grid.Row="1"/>
+            <Button x:Name="Clear" Content="C" HorizontalAlignment="Left" Margin="103,92.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18" Click="Clear_Click" Grid.Row="1"/>
+            <Button x:Name="Divide" Content="÷" HorizontalAlignment="Left" Margin="148,92.717,0,0" VerticalAlignment="Top" Width="40" Height="40" FontSize="18"  Click="Button_Operand" Grid.Row="1"/>
+            <Button x:Name="Clear_Copy" Content="CE" HorizontalAlignment="Left" Margin="13,92.717,0,0" VerticalAlignment="Top" Width="85" Height="40" FontSize="18" Click="CE_Click" Grid.Row="1"/>
+            <Label x:Name="Equation" Content="" HorizontalAlignment="Left" Margin="12,16.717,0,0" VerticalAlignment="Top" Width="118" Height="31" Grid.Row="1"/>
+            <Label x:Name="Display" Content="0" Height="71" Margin="10,16.717,0,0" VerticalAlignment="Top" Width="175" HorizontalAlignment="Left" FontSize="22" HorizontalContentAlignment="Right" BorderThickness="7,0,0,0" VerticalContentAlignment="Center" Grid.Row="1"/>
+
+        </Grid>
     </Grid>
 </Window>
