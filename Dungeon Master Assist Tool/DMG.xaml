@@ -5,8 +5,138 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dungeon_Master_Assist_Tool"
         mc:Ignorable="d"
-        Title="DMG phrases" Height="450" Width="800">
+         ResizeMode="NoResize" WindowStyle="None" Background="#EEE9ED">
+
+    <Window.Resources>
+
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Background" Value="Transparent"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Label Content="{Binding PrimarySource}" FontFamily="Fonts/#Dosis" FontWeight="SemiBold"
+                                   HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Label Content="{Binding SecondarySource}" FontSize="12"
+                                   HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E8E3E7"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#D6D1D5"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+        <Style TargetType="Button" x:Key="redButton">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9e0000"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="popButton">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="Background" Value="#202124"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4B4C4F"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border Name="Border" Margin="0,5,0,0" 
+                                    Background="LightGray" BorderBrush="Transparent"
+                                    BorderThickness="1,1,1,1">
+                                <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header" Margin="12,2,12,2"
+                                                  RecognizesAccessKey="True">
+
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#E8E3E7"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100"/>
+                                <Setter TargetName="Border" Property="Background" Value="#EEE9ED"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#EEE9ED"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="FontWeight" Value="Light"/>
+
+        </Style>
+
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="147*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="#D6D1D5" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#323639" MouseDown="dragEventHandler">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Damage Phrases Selector"
+                           Foreground="White" FontFamily="Fonts/#Dosis"
+                           VerticalAlignment="Center" FontSize="15" Margin="5,0,0,0"/>
+
+
+                <Button Grid.Column="17" HorizontalAlignment="Right" Style="{StaticResource redButton}"
+                    Width="15" Height="15" Click="CloseButtonClicked" Foreground="White"
+                    Margin="0,0,5,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
+
 </Window>

@@ -137,20 +137,7 @@
                            Foreground="White" FontFamily="Fonts/#Dosis"
                            VerticalAlignment="Center" FontSize="15" Margin="5,0,0,0"/>
 
-                <Button HorizontalAlignment="Left" Style="{StaticResource popButton}"
-                    Width="15" Height="15" Click="Calcwindow_Click" Foreground="White"
-                    Margin="175,0,5,0">
-
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}"
-                                            CornerRadius="12">
-                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-
-                </Button>
+              
 
                 <Button HorizontalAlignment="Left" Style="{StaticResource popButton}"
                     Width="15" Height="15" Click="BattleMapwindow_Click" Foreground="White"
