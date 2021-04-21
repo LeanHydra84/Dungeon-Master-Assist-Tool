@@ -64,6 +64,18 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Button" x:Key="minimizeButton">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="GreenYellow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -200,6 +212,22 @@
 
                 </Button>
 
+                <!-- Right Side Buttons -->
+                
+                <Button Grid.Column="17" HorizontalAlignment="Right" Style="{StaticResource minimizeButton}"
+                    Width="15" Height="15" Click="MinimizeButtonClicked" Foreground="White"
+                    Margin="0,0,26,0">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="12">
+                                <ContentPresenter Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
 
                 <Button Grid.Column="17" HorizontalAlignment="Right" Style="{StaticResource redButton}"
                     Width="15" Height="15" Click="CloseButtonClicked" Foreground="White"
@@ -246,20 +274,18 @@
 
                         <StackPanel>
 
-                            <Label Content="Monsters"/>
-                            <Grid Margin="26,10,27,10">
+                            <Label Content="Monsters" FontSize="20" Margin="10,0,10,0" 
+                                   FontWeight="Bold" FontFamily="Fonts/#Dosis"/>
 
+                            <Grid Margin="26,10,27,10">
                                 <Button Height="20" Width="20" HorizontalAlignment="Left"/>
                                 <TextBox x:Name="MonsterSearchBar" Width="370" Height="20" HorizontalAlignment="Right"/>
-
                             </Grid>
 
                             <ListBox Height="485" Width="400" 
                                      x:Name="MonsterListBox" 
                                      ItemsSource="{Binding MonsterData.Enumerator}"
                                      SelectionMode="Single"/>
-
-
 
                         </StackPanel>
 
@@ -366,16 +392,17 @@
 
                                         <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" 
                                                Text="Traits" Margin="10,5,10,0" HorizontalAlignment="Center"/>
-                                        <TextBlock Width="365" TextWrapping="Wrap" Text="{Binding MonsterData.CurrentState.Traits}"/>
+                                        <TextBlock Width="365" TextWrapping="Wrap" 
+                                                   Text="{Binding MonsterData.CurrentState.Traits}" Margin="5,0,5,0"/>
 
                                         <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" 
                                                Text="Actions" Margin="10,5,10,0" HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding MonsterData.CurrentState.Actions}"
-                                               Width="365" TextWrapping="Wrap"/>
+                                               Width="365" TextWrapping="Wrap" Margin="5,0,5,0"/>
                                         <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" 
                                                Text="Legendary Actions" Margin="10,5,10,0" HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding MonsterData.CurrentState.LegendaryActions}"
-                                               Width="365" TextWrapping="Wrap"/>
+                                               Width="365" TextWrapping="Wrap" Margin="5,0,5,5"/>
 
 
 

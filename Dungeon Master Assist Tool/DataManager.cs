@@ -129,11 +129,6 @@ namespace Dungeon_Master_Assist_Tool
             }
         }
 
-        public string TraitsTruncated => Traits.Truncate(DataManager.LengthyTextLimit);
-        public string ActionsTruncated => Actions.Truncate(DataManager.LengthyTextLimit);
-        public string LegendaryActionsTruncated => LegendaryActions.Truncate(DataManager.LengthyTextLimit);
-
-
         [JsonProperty("img_url")]
         public string ImageURL { get; set; }
 
@@ -281,7 +276,7 @@ namespace Dungeon_Master_Assist_Tool
         }
     }
 
-    public class StateSelectorManager<T> : INotifyPropertyChanged where T : class
+    public class StateSelectorManager<T> : INotifyPropertyChanged where T : class, BindToListBox
     {
 
 
@@ -331,7 +326,7 @@ namespace Dungeon_Master_Assist_Tool
             SpellsList = DeserializeJSONAsset<SpellState>("spells.json");
         }
 
-        public StateSelectorManager<T> DeserializeJSONAsset<T>(string fileName) where T : class
+        public StateSelectorManager<T> DeserializeJSONAsset<T>(string fileName) where T : class, BindToListBox
         {
             string jsonData = null;
 

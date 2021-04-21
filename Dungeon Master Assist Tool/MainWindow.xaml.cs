@@ -50,9 +50,9 @@ namespace Dungeon_Master_Assist_Tool
             Application.Current.Shutdown();
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MinimizeButtonClicked(object sender, EventArgs e)
         {
-
+            this.WindowState = WindowState.Minimized;
         }
 
         private void Calcwindow_Click(object sender, RoutedEventArgs e)
@@ -83,5 +83,6 @@ namespace Dungeon_Master_Assist_Tool
             Window Noteswindow = new WindowNotes();
             Noteswindow.Show();
         }
+
     }
 }
