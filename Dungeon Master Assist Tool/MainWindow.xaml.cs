@@ -55,12 +55,6 @@ namespace Dungeon_Master_Assist_Tool
 
         }
 
-        private void Calcwindow_Click(object sender, RoutedEventArgs e)
-        {
-            Window Calculator = new WindowCalc();
-            Calculator.Show();
-        }
-
         private void BattleMapwindow_Click(object sender, RoutedEventArgs e)
         {
             Window BattleMap = new WindowBattle();
