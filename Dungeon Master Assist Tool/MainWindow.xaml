@@ -53,6 +53,17 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Button" x:Key="minimizeButton">
+            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+            <Setter Property="Background" Value="#FABE4D"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D9A040"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="Button" x:Key="popButton">
             <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
             <Setter Property="Background" Value="#202124"/>
@@ -64,18 +75,6 @@
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="Button" x:Key="minimizeButton">
-            <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
-            <Setter Property="Background" Value="#FABE4D"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#D9A040"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        
-        
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Template">
                 <Setter.Value>

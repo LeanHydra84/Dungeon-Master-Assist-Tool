@@ -64,6 +64,7 @@
     <Compile Include="DMG.xaml.cs">
       <DependentUpon>DMG.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageManipulator.cs" />
     <Compile Include="TravelTool.xaml.cs">
       <DependentUpon>TravelTool.xaml</DependentUpon>
     </Compile>
@@ -122,6 +123,7 @@
     <Resource Include="Fonts\DosisVar.ttf" />
     <Resource Include="JsonFIles\spells.json" />
     <Resource Include="JsonFIles\srd_5e_monsters.json" />
+    <Resource Include="JsonFIles\TestValues.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -130,6 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -37,7 +37,7 @@ namespace Dungeon_Master_Assist_Tool
 
         }
 
-        public void dragEventHandler(object sender, MouseEventArgs e)
+        private void dragEventHandler(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
@@ -45,7 +45,7 @@ namespace Dungeon_Master_Assist_Tool
             }
         }
 
-        public void CloseButtonClicked(object sender, EventArgs e)
+        private void CloseButtonClicked(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
@@ -57,25 +57,26 @@ namespace Dungeon_Master_Assist_Tool
 
         private void BattleMapwindow_Click(object sender, RoutedEventArgs e)
         {
-            Window BattleMap = new WindowBattle();
-            BattleMap.Show();
+            Window battleMap = new WindowBattle();
+            battleMap.Show();
         }
 
         private void DMGwindow_Click(object sender, RoutedEventArgs e)
         {
-            Window DMGwindow = new WindowDMG();
-            DMGwindow.Show();
+            Window damageWindow = new WindowDMG();
+            damageWindow.Show();
         }
 
         private void Travelwindow_Click(object sender, RoutedEventArgs e)
         {
-            Window Travelwindow = new WindowTravel();
-            Travelwindow.Show();
+            Window travelWindow = new WindowTravel();
+            travelWindow.DataContext = manager;
+            travelWindow.Show();
         }
         private void Noteswindow_Click(object sender, RoutedEventArgs e)
         {
-            Window Noteswindow = new WindowNotes();
-            Noteswindow.Show();
+            Window notesWindow = new WindowNotes();
+            notesWindow.Show();
         }
 
     }

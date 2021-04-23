@@ -1,0 +1,70 @@
+{
+  "Slashing": {
+    "Healthy": [  ],
+    "Wounded": [ ],
+    "NearDeath": [  ]
+  },
+
+  "Bludgeoning": {
+    "Healthy": [  ],
+    "Wounded": [  ],
+    "NearDeath": [  ]
+  },
+
+  "Piercing": {
+    "Healthy": [ ],
+    "Wounded": [ ],
+    "NearDeath": [  ]
+  },
+  "Acid": {
+    "Healthy": [ ],
+    "Wounded": [  ],
+    "NearDeath": [ ]
+  },
+  "Cold": {
+    "Healthy": [],
+    "Wounded": [ ],
+    "NearDeath": [  ]
+  },
+  "Fire": {
+    "Healthy": [],
+    "Wounded": [  ],
+    "NearDeath": []
+  },
+  "Lightning": {
+    "Healthy": [],
+    "Wounded": [],
+    "NearDeath": [  ]
+  },
+  "Necrotic": {
+    "Healthy": [ ],
+    "Wounded": [  ],
+    "NearDeath": [ ]
+  },
+
+  "Poison": {
+    "Healthy": [ ],
+    "Wounded": [  ],
+    "NearDeath": [  ]
+  },
+
+  "Psychic": {
+    "Healthy": [ ],
+    "Wounded": [  ],
+    "NearDeath": [  ]
+  },
+
+  "Radiant": {
+    "Healthy": [  ],
+    "Wounded": [  ],
+    "NearDeath": [ ]
+  },
+
+  "Thunder": {
+    "Healthy": [ "Option 1", "Option 2" ],
+    "Wounded": [ "Wounded Option 1", "Wounded Option 2" ],
+    "NearDeath": [ "ND Option 1", "ND Option 2" ]
+  }
+
+
+}

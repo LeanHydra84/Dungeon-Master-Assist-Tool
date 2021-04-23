@@ -203,6 +203,28 @@ namespace Dungeon_Master_Assist_Tool
 
     }
 
+    public class DamagePhrases
+    {
+
+        public Dictionary<string, Dictionary<string, string[]>> Phrases;
+
+        public void Deserialize(string name)
+        {
+            string jsonData = null;
+
+            var stream = Application.GetResourceStream(new Uri($@"pack://application:,,,/JsonFiles/{name}", UriKind.RelativeOrAbsolute)).Stream;
+
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                jsonData = reader.ReadToEnd();
+            }
+            stream.Close();
+
+            Phrases = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string[]>>>(jsonData);
+        }
+
+    }
+
     // This is an ugly wrapper for a beautiful solution, let it be known
     public class ReloadableEnumerator<T> : IEnumerable<T>
     {
@@ -264,8 +286,6 @@ namespace Dungeon_Master_Assist_Tool
                     }
                 }
 
-
-
                 if (currentIndex >= array.Length) return false;
                 return true;
             }
@@ -312,13 +332,60 @@ namespace Dungeon_Master_Assist_Tool
 
     }
 
+    public class RandomSetSelector<T> : IEnumerable<T>
+    {
+
+        private static Random rand = new Random();
+
+        T[] Set;
+
+        public RandomSetSelector(T[] set)
+        {
+            Set = set;
+        }
+
+        public static RandomSetSelector<T> DeserializeJSONResource(string name)
+        {
+            string jsonData = null;
+
+            var stream = Application.GetResourceStream(new Uri($@"pack://application:,,,/JsonFiles/{name}", UriKind.RelativeOrAbsolute)).Stream;
+
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                jsonData = reader.ReadToEnd();
+            }
+            stream.Close();
+
+            return new RandomSetSelector<T>(JsonConvert.DeserializeObject<T[]>(jsonData));
+
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (T item in Set)
+            {
+                yield return item;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public T this[int index]
+        {
+            get => Set[index];
+        }
+
+        public T GetRandom => Set[rand.Next() % Set.Length];
+
+    }
+
     public class DataManager
     {
 
         public StateSelectorManager<MonsterState> MonsterData { get; }
         public StateSelectorManager<SpellState> SpellsList { get; }
 
-        public static int LengthyTextLimit = 100;
+        DamagePhrases phrases;
 
         public DataManager()
         {
@@ -326,7 +393,7 @@ namespace Dungeon_Master_Assist_Tool
             SpellsList = DeserializeJSONAsset<SpellState>("spells.json");
         }
 
-        public StateSelectorManager<T> DeserializeJSONAsset<T>(string fileName) where T : class, BindToListBox
+        public static StateSelectorManager<T> DeserializeJSONAsset<T>(string fileName) where T : class, BindToListBox
         {
             string jsonData = null;
 
