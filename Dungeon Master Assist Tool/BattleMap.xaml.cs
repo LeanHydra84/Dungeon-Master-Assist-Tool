@@ -64,7 +64,7 @@ namespace Dungeon_Master_Assist_Tool
         }
 
         // Image Panning
-
+        
         Point start, origin;
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)

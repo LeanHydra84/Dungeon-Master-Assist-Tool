@@ -157,7 +157,7 @@ namespace Dungeon_Master_Assist_Tool
         public string Components { get; set; }
 
         [JsonProperty("material")]
-        public string Material { get; set; }
+        public string Material { get; set; } = "None";
 
         [JsonProperty("ritual")]
         public string Ritual { get; set; }

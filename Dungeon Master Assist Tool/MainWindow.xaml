@@ -411,14 +411,15 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel>
-                            <Label Content="Spells"/>
+                            <Label Content="Spells" FontSize="20" Margin="10,0,10,0" 
+                                   FontWeight="Bold" FontFamily="Fonts/#Dosis"/>
 
-                            <StackPanel Orientation="Horizontal">
+                            <Grid Margin="26,10,27,10">
 
-                                <Button Height="20" Width="20"/>
-                                <TextBox x:Name="SpellSearchBar" Width="400" Height="20"/>
+                                <Button Height="20" Width="20" HorizontalAlignment="Left"/>
+                                <TextBox x:Name="SpellSearchBar" Width="370" Height="20" HorizontalAlignment="Right"/>
 
-                            </StackPanel>
+                            </Grid>
 
                             <ListBox Height="500" Width="400" x:Name="SpellListBox" ItemsSource="{Binding SpellsList.Enumerator}"/>
 
@@ -430,10 +431,79 @@
                             <Border Width="400" Height="520" BorderThickness="4" Margin="0,15,0,0"
                                     BorderBrush="White" CornerRadius="8">
 
-                                <StackPanel Orientation="Horizontal" Margin="10, 5, 10, 0">
-                                    <TextBlock Text="Spell: " FontSize="25" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding SpellsList.CurrentState.Name}" FontSize="25" Foreground="Gray"/>
-                                </StackPanel>
+                                <ScrollViewer>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10, 5, 10, 0">
+                                            <TextBlock Text="Spell:" FontSize="25" FontWeight="SemiBold"/>
+                                            <TextBlock Text="{Binding SpellsList.CurrentState.Name}" FontSize="25" Foreground="Gray" Margin="10,0,0,0"/>
+                                        </StackPanel>
+
+                                        
+
+                                        <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
+                                            <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold"
+                                                       Text="Casting Time:" />
+                                            <TextBlock FontFamily="Fonts/#Dosis" Text="{Binding SpellsList.CurrentState.CastingTime}" Margin="10,0,0,0"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="10,0,10,5">
+                                            <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold"
+                                                       Text="Range:"/>
+                                            <TextBlock FontFamily="Fonts/#Dosis" Text="{Binding SpellsList.CurrentState.Range}" Margin="10,0,0,0"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="10,0,10,5">
+                                            <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold"
+                                                       Text="Duration:"/>
+                                            <TextBlock FontFamily="Fonts/#Dosis" Text="{Binding SpellsList.CurrentState.Duration}" Margin="10,0,0,0"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="10,0,10,5">
+                                            <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold"
+                                                       Text="Class:"/>
+                                            <TextBlock FontFamily="Fonts/#Dosis" Text="{Binding SpellsList.CurrentState.Class}" Margin="10,0,0,0"/>
+                                        </StackPanel>
+
+                                        <Grid Height="50" Margin="10">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel>
+                                                <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" HorizontalAlignment="Center"
+                                                       Text="Level"/>
+                                                <TextBlock FontFamily="Fonts/#Dosis" Text="{Binding SpellsList.CurrentState.Level}" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <StackPanel HorizontalAlignment="Center" Grid.Column="1">
+                                                <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" HorizontalAlignment="Center"
+                                                       Text="School"/>
+                                                <TextBlock FontFamily="Fonts/#Dosis" Text="{Binding SpellsList.CurrentState.School}" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <StackPanel HorizontalAlignment="Center" Grid.Column="2">
+                                                <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold" HorizontalAlignment="Center"
+                                                       Text="Components"/>
+                                                <TextBlock FontFamily="Fonts/#Dosis" Text="{Binding SpellsList.CurrentState.Components}" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+
+                                        </Grid>
+
+                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold"
+                                                   Text="Materials: " Margin="10,0,10,0"/>
+                                        <TextBlock Text="{Binding SpellsList.CurrentState.Material}"
+                                                   Width="350" TextWrapping="Wrap" Margin="10,2,10,10"/>
+
+                                        <TextBlock FontFamily="Fonts/#Dosis" FontWeight="SemiBold"
+                                                   Text="Description: " Margin="10,0,10,0"/>
+                                        <TextBlock Text="{Binding SpellsList.CurrentState.Description}"
+                                                   Width="350" TextWrapping="Wrap" Margin="10,2,10,10"/>
+                                        
+                                    </StackPanel>
+                                </ScrollViewer>
 
                             </Border>
                         </Grid>

@@ -79,9 +79,9 @@
         </Grid>
         
         <Border Width="700" Height="400" BorderThickness="1" BorderBrush="Black" 
-                CornerRadius="5" Grid.Row="1" ClipToBounds="True" x:Name="imageBorder">
+                Grid.Row="1" ClipToBounds="True" x:Name="imageBorder"
+                MouseWheel="Image_MouseWheel" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove">
             <Image Source="Images/cat.png" RenderTransformOrigin="0.5, 0.5"
-                   MouseWheel="Image_MouseWheel" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove"
                    x:Name="battleImage">
 
                 <Image.RenderTransform>
