@@ -385,15 +385,15 @@ namespace Dungeon_Master_Assist_Tool
         public StateSelectorManager<MonsterState> MonsterData { get; }
         public StateSelectorManager<SpellState> SpellsList { get; }
 
-        DamagePhrases phrases;
-
         public DataManager()
         {
-            MonsterData = DeserializeJSONAsset<MonsterState>("srd_5e_monsters.json");
-            SpellsList = DeserializeJSONAsset<SpellState>("spells.json");
+
+            MonsterData = new StateSelectorManager<MonsterState>(DeserializeJSONAsset<MonsterState>("srd_5e_monsters.json"));
+            SpellsList = new StateSelectorManager<SpellState>(DeserializeJSONAsset<SpellState>("spells.json"));
+
         }
 
-        public static StateSelectorManager<T> DeserializeJSONAsset<T>(string fileName) where T : class, BindToListBox
+        public static T[] DeserializeJSONAsset<T>(string fileName) where T : class
         {
             string jsonData = null;
 
@@ -405,7 +405,7 @@ namespace Dungeon_Master_Assist_Tool
             }
             stream.Close();
 
-            return new StateSelectorManager<T>(JsonConvert.DeserializeObject<T[]>(jsonData));
+            return JsonConvert.DeserializeObject<T[]>(jsonData);
 
         }
 

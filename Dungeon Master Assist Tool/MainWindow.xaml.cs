@@ -45,6 +45,17 @@ namespace Dungeon_Master_Assist_Tool
             }
         }
 
+        private void CreateMonster_Click(object sender, EventArgs e)
+        {
+            var dialog = new CreateMonster();
+
+            if(dialog.ShowDialog() == true)
+            {
+                Debug.WriteLine("we got him");
+            }
+
+        }
+
         private void CloseButtonClicked(object sender, EventArgs e)
         {
             Application.Current.Shutdown();

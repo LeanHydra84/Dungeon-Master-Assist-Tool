@@ -58,8 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ArrayManagement.cs" />
     <Compile Include="BattleMap.xaml.cs">
       <DependentUpon>BattleMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateMonster.xaml.cs">
+      <DependentUpon>CreateMonster.xaml</DependentUpon>
     </Compile>
     <Compile Include="DMG.xaml.cs">
       <DependentUpon>DMG.xaml</DependentUpon>
@@ -71,6 +75,10 @@
     <Compile Include="NotesWin.xaml.cs">
       <DependentUpon>NotesWin.xaml</DependentUpon>
     </Compile>
+    <Page Include="CreateMonster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

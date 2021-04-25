@@ -264,7 +264,7 @@
                                    FontWeight="Bold" FontFamily="Fonts/#Dosis"/>
 
                             <Grid Margin="26,10,27,10">
-                                <Button Height="20" Width="20" HorizontalAlignment="Left"/>
+                                <Button Height="20" Width="20" HorizontalAlignment="Left" Click="CreateMonster_Click"/>
                                 <TextBox x:Name="MonsterSearchBar" Width="370" Height="20" HorizontalAlignment="Right"/>
                             </Grid>
 

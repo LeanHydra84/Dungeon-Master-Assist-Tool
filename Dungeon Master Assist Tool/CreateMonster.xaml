@@ -1,0 +1,24 @@
+﻿<Window x:Class="Dungeon_Master_Assist_Tool.CreateMonster"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dungeon_Master_Assist_Tool"
+        mc:Ignorable="d"
+        Title="CreateMonster" Height="600" Width="450"
+        WindowStyle="None" ResizeMode="NoResize">
+    <Grid Background="#EEE9ED">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#323639" MouseDown="dragEventHandler"/>
+
+        <Button Grid.Row="1" Content="Accept" Click="AcceptButton" Height="50" Width="100" HorizontalAlignment="Left"/>
+
+        <Button Grid.Row="1" Content="Close" Click="CloseButton" Height="50" Width="100" HorizontalAlignment="Right"/>
+
+    </Grid>
+</Window>
